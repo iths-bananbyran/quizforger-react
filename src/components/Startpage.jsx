@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Quizpage from './Quizpage';
+import { Link } from 'react-router-dom';
 
 const Startpage = ()=>{
 
@@ -34,7 +35,7 @@ const Startpage = ()=>{
     useEffect(()=>{
         if (homePage != null){
 
-            setHeroImg(homePage._embedded["wp:featuredmedia"][0].media_details.sizes.large.source_url);
+            setHeroImg(homePage._embedded["wp:featuredmedia"][0].media_details.sizes["1536x1536"].source_url);
         }
         
     }, [homePage]);
@@ -43,9 +44,15 @@ const Startpage = ()=>{
 const renderQuizTitles = (post) => {
 
     let title = post.quiz_title;
+    let id = post.quiz_id;
     
     return(
+        <Link to={{
+            pathname: `/quiz/${id}`,
+        }}>
         <h2 key={title}>{title}</h2>
+        </Link>
+
     )
 
 }
@@ -58,8 +65,9 @@ const renderQuizTitles = (post) => {
                 <img src={heroImg ? heroImg : null} alt=""/>
             </div>
             
-            <div>{latestPosts !=null ? latestPosts.map(post => renderQuizTitles(post)) : ''}</div>
-            <Quizpage />
+            <div>
+                {latestPosts !=null ? latestPosts.map(post => renderQuizTitles(post)) : ''}
+            </div>
 
         </main>
     )

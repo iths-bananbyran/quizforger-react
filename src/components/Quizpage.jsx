@@ -1,21 +1,26 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const Quizpage = ()=>{
 
-    const [quizInfo, setQuizInfo] = useState([]);
-    const [questions, setQuestions] = useState([]);
+    const {id} = useParams();
+
+    const [quizInfo, setQuizInfo] = useState(null);
+    const [questions, setQuestions] = useState(null);
     
 
     useEffect(()=>{
-        const id = 6;
         const quizUrl = `https://www.peowstudio.com/quizforge/wp-json/quizforge/v1/quiz/${id}`;
 
         const fetchQuiz = async ()=>{
             await fetch(quizUrl)
                     .then(result => result.json())
-                    .then(result=>setQuizInfo(result[0]))
-                    .then(result=>setQuestions(result[1]))
+                    .then(result=>{
+                        console.log(result)
+                        setQuizInfo(result[0][0])
+                        setQuestions(result[1])
+                    })
                     .catch(e => console.error(e));
         }
 
@@ -27,8 +32,10 @@ const Quizpage = ()=>{
 
     return(
         <div className="quiz-container">
-            <h1>{quizInfo ? quizInfo.title : 'Ingen titel'}</h1>
-            <p>{quizInfo ? quizInfo.id : 'Inget id'}</p>
+            <p>Hej syns jag?</p>
+            <h1>{quizInfo != null ? quizInfo.title : 'Ingen titel'}</h1>
+            <p>{quizInfo != null ? quizInfo.quiz_id : 'Inget id'}</p>
+            <p>{questions != null ? questions[0].question : 'Här skulle fråga stått'}</p>
         </div>
 
     )
