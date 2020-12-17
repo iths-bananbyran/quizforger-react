@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import Quizpage from './Quizpage';
 import { Link } from 'react-router-dom';
 
 const Startpage = ()=>{

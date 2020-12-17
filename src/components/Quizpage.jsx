@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Quizcard from './Quizcard';
 
 const Quizpage = ()=>{
 
@@ -8,6 +9,7 @@ const Quizpage = ()=>{
 
     const [quizInfo, setQuizInfo] = useState(null);
     const [questions, setQuestions] = useState(null);
+    const [currentQuestion, setCurrentQuestion] = useState(null);
     
 
     useEffect(()=>{
@@ -26,16 +28,31 @@ const Quizpage = ()=>{
 
        
         fetchQuiz();
-
+        
     }, []);
+
+    useEffect(()=>{
+        if (questions){setCurrentQuestion(questions[0])}
+
+    }, [questions])
+
+    const checkAnswer = (guess) => {
+
+        let rightAnswer = 'answer_'+currentQuestion.right_answer;
+
+        if (rightAnswer === guess) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 
 
     return(
         <div className="quiz-container">
-            <p>Hej syns jag?</p>
             <h1>{quizInfo != null ? quizInfo.title : 'Ingen titel'}</h1>
-            <p>{quizInfo != null ? quizInfo.quiz_id : 'Inget id'}</p>
-            <p>{questions != null ? questions[0].question : 'Här skulle fråga stått'}</p>
+            {currentQuestion != null ? <Quizcard {...currentQuestion} checkAnswer={checkAnswer}/>: null}
         </div>
 
     )
