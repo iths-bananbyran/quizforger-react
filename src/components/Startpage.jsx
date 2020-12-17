@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import Quizpage from './Quizpage';
 
 const Startpage = ()=>{
 
@@ -9,7 +10,7 @@ const Startpage = ()=>{
 
     useEffect(()=>{
         const homePageUrl = 'https://www.peowstudio.com/quizforge/wp-json/wp/v2/pages/10?_embed';
-        const latestPostsUrl = 'https://www.peowstudio.com/quizforge/wp-json/wp/v2/posts?per_page=6';
+        const latestPostsUrl = 'https://www.peowstudio.com/quizforge/wp-json/quizforge/v1/quizposts/6';
 
         const fetchHomePage = async ()=>{
             await fetch(homePageUrl)
@@ -41,7 +42,7 @@ const Startpage = ()=>{
 
 const renderQuizTitles = (post) => {
 
-    let title = post.title.rendered;
+    let title = post.quiz_title;
     
     return(
         <h2 key={title}>{title}</h2>
@@ -58,6 +59,7 @@ const renderQuizTitles = (post) => {
             </div>
             
             <div>{latestPosts !=null ? latestPosts.map(post => renderQuizTitles(post)) : ''}</div>
+            <Quizpage />
 
         </main>
     )
