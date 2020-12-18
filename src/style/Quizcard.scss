@@ -1,3 +1,11 @@
+.guess-btn {
+  color: black;
+  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .right {
   color: green;
 }
@@ -6,6 +14,19 @@
   color: red;
 }
 
+.clicked {
+  border: 3px solid black;
+}
+
 .quiz-card {
   background-color: azure;
+}
+
+.answers {
+  padding: 0;
+}
+
+.answer-list-item {
+  list-style: none;
+  margin: 1rem 0;
 }

@@ -46,10 +46,10 @@ const renderQuizTitles = (post) => {
     let id = post.quiz_id;
     
     return(
-        <Link to={{
+        <Link key={title} to={{
             pathname: `/quiz/${id}`,
         }}>
-        <h2 key={title}>{title}</h2>
+        <h2>{title}</h2>
         </Link>
 
     )

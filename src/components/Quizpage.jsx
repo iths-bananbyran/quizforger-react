@@ -10,6 +10,8 @@ const Quizpage = ()=>{
     const [quizInfo, setQuizInfo] = useState(null);
     const [questions, setQuestions] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(null);
+    const [scoreBoard, setScoreBoard] = useState([]);
+    const [quizLength, setQuizLength] = useState(null);
     
 
     useEffect(()=>{
@@ -22,6 +24,7 @@ const Quizpage = ()=>{
                         console.log(result)
                         setQuizInfo(result[0][0])
                         setQuestions(result[1])
+                        setQuizLength(result[1].length)
                     })
                     .catch(e => console.error(e));
         }
@@ -29,21 +32,27 @@ const Quizpage = ()=>{
        
         fetchQuiz();
         
-    }, []);
+    }, [id]);
 
     useEffect(()=>{
         if (questions){setCurrentQuestion(questions[0])}
 
     }, [questions])
 
-    const checkAnswer = (guess) => {
+    const addScore = (guess) => {
 
-        let rightAnswer = 'answer_'+currentQuestion.right_answer;
+        let rightAnswer = currentQuestion.right_answer;
 
-        if (rightAnswer === guess) {
-            return true;
+        if ( guess === rightAnswer ) {
+            
+            setScoreBoard(prevScore =>[...prevScore, true])
+            console.log(scoreBoard)
+
         } else {
-            return false;
+            
+            setScoreBoard(prevScore =>[...prevScore, false])
+            console.log(scoreBoard)
+
         }
 
     }
@@ -52,7 +61,7 @@ const Quizpage = ()=>{
     return(
         <div className="quiz-container">
             <h1>{quizInfo != null ? quizInfo.title : 'Ingen titel'}</h1>
-            {currentQuestion != null ? <Quizcard {...currentQuestion} checkAnswer={checkAnswer}/>: null}
+            {currentQuestion != null ? <Quizcard {...currentQuestion} addScore={addScore}/>: null}
         </div>
 
     )
