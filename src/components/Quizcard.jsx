@@ -39,14 +39,19 @@ const Quizcard = (props)=>{
 
     }
 
-    const handleNext = (id) => {
+    const handleNext = () => {
 
-// ändra fråga
+        props.setNextQuestion()
+
     }
 
 
     return(
         <div className="quiz-card">
+            {props.question_image && 
+                <div className="question-img-wrapper">
+                    <img src={props.question_image} alt={props.question}/>
+                </div>}
             <h2>{props.question}</h2>
             <ul className="answers">
                 <li className="answer-list-item">
@@ -99,7 +104,25 @@ const Quizcard = (props)=>{
                 </li>
                 
             </ul>
-            <button className="next-question">Nästa fråga</button>
+            {currentGuess && props.explanation && 
+            <div>
+                <p>
+                    {props.explanation}
+                </p>
+            </div>
+            }
+            <button 
+            className="next-question"
+            disabled={currentGuess ? false : true}
+            onClick={()=> {
+                if (currentGuess) {
+                    handleNext();
+                    setCurrentGuess(null);
+                    setClickedBtn(null);
+                }
+                }}>
+            {props.lastQuestion ? 'Visa resultat!' : 'Nästa fråga' }
+            </button>
         </div>
     )
 }

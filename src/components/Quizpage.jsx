@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Quizcard from './Quizcard';
+import Result from './Result';
 
 const Quizpage = ()=>{
 
@@ -12,6 +13,8 @@ const Quizpage = ()=>{
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [scoreBoard, setScoreBoard] = useState([]);
     const [quizLength, setQuizLength] = useState(null);
+    const [finished, setFinished] = useState(false);
+    const [lastQuestion, setLastQuestion] = useState(false);
     
 
     useEffect(()=>{
@@ -21,7 +24,6 @@ const Quizpage = ()=>{
             await fetch(quizUrl)
                     .then(result => result.json())
                     .then(result=>{
-                        console.log(result)
                         setQuizInfo(result[0][0])
                         setQuestions(result[1])
                         setQuizLength(result[1].length)
@@ -46,22 +48,40 @@ const Quizpage = ()=>{
         if ( guess === rightAnswer ) {
             
             setScoreBoard(prevScore =>[...prevScore, true])
-            console.log(scoreBoard)
 
         } else {
             
             setScoreBoard(prevScore =>[...prevScore, false])
-            console.log(scoreBoard)
 
         }
 
     }
 
+    const nextQuestion = () => {
+        if(scoreBoard.length < quizLength){
+
+            setCurrentQuestion(questions[scoreBoard.length])
+
+            if (scoreBoard.length === quizLength -1) {
+                setLastQuestion(true);
+            }
+        } else {
+            setFinished(true);
+        }
+    }
+
 
     return(
         <div className="quiz-container">
-            <h1>{quizInfo != null ? quizInfo.title : 'Ingen titel'}</h1>
-            {currentQuestion != null ? <Quizcard {...currentQuestion} addScore={addScore}/>: null}
+        {!finished ?
+            <div>
+                <h1>{quizInfo != null ? quizInfo.title : 'Ingen titel'}</h1>
+                {currentQuestion != null ? <Quizcard {...currentQuestion} addScore={addScore} lastQuestion={lastQuestion} setNextQuestion={nextQuestion}/>: null}
+            </div>
+            :
+            <div>
+                <Result scoreBoard={scoreBoard}/>
+            </div>}
         </div>
 
     )
