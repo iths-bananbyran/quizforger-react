@@ -13,6 +13,7 @@ const Quizpage = ()=>{
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [scoreBoard, setScoreBoard] = useState([]);
     const [quizLength, setQuizLength] = useState(null);
+    const [legend, setLegend] = useState({});
     const [finished, setFinished] = useState(false);
     const [lastQuestion, setLastQuestion] = useState(false);
     
@@ -27,6 +28,7 @@ const Quizpage = ()=>{
                         setQuizInfo(result[0][0])
                         setQuestions(result[1])
                         setQuizLength(result[1].length)
+                        setLegend({question: 1, length: result[1].length})
                     })
                     .catch(e => console.error(e));
         }
@@ -61,6 +63,7 @@ const Quizpage = ()=>{
         if(scoreBoard.length < quizLength){
 
             setCurrentQuestion(questions[scoreBoard.length])
+            setLegend({question: scoreBoard.length+1, length: quizLength})
 
             if (scoreBoard.length === quizLength -1) {
                 setLastQuestion(true);
@@ -76,7 +79,7 @@ const Quizpage = ()=>{
         {!finished ?
             <div>
                 <h1>{quizInfo != null ? quizInfo.title : 'Ingen titel'}</h1>
-                {currentQuestion != null ? <Quizcard {...currentQuestion} addScore={addScore} lastQuestion={lastQuestion} setNextQuestion={nextQuestion}/>: null}
+                {currentQuestion != null ? <Quizcard {...currentQuestion} legend={legend} addScore={addScore} lastQuestion={lastQuestion} setNextQuestion={nextQuestion}/>: null}
             </div>
             :
             <div>

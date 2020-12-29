@@ -48,6 +48,7 @@ const Quizcard = (props)=>{
 
     return(
         <div className="quiz-card">
+            <span>{props.legend.question} / {props.legend.length}</span>
             {props.question_image && 
                 <div className="question-img-wrapper">
                     <img src={props.question_image} alt={props.question}/>
