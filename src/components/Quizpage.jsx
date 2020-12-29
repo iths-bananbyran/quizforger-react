@@ -63,7 +63,10 @@ const Quizpage = ()=>{
         if(scoreBoard.length < quizLength){
 
             setCurrentQuestion(questions[scoreBoard.length])
-            setLegend({question: scoreBoard.length+1, length: quizLength})
+            setLegend(prevstate => ({
+                ...prevstate,
+                question: scoreBoard.length + 1
+            }))
 
             if (scoreBoard.length === quizLength -1) {
                 setLastQuestion(true);
