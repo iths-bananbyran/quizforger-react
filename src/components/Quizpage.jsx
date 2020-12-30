@@ -81,7 +81,7 @@ const Quizpage = ()=>{
         <div className="quiz-container">
         {!finished ?
             <div>
-                <h1>{quizInfo != null ? quizInfo.title : 'Ingen titel'}</h1>
+                <h1>{quizInfo != null ? quizInfo.title : 'Laddar ...'}</h1>
                 {currentQuestion != null ? <Quizcard {...currentQuestion} legend={legend} addScore={addScore} lastQuestion={lastQuestion} setNextQuestion={nextQuestion}/>: null}
             </div>
             :
