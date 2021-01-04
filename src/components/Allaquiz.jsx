@@ -42,13 +42,11 @@ const Allaquiz = ()=>{
         <div>
             <h2>Alla quiz</h2>
             {categories && categories.map(cat => {
-                console.log(cat)
                 let result = allQuizes.filter(quiz => quiz.quiz_category[0].name === cat);
-                console.log(result)
                 return(
                     
                     <>
-                    <h3>{cat}</h3>
+                    <h3>{cat.replace(/&amp;/g, '&')}</h3>
                     {result.map((quiz, i) => {
                         return (
 

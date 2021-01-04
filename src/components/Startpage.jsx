@@ -56,7 +56,7 @@ const renderQuizTitles = (post) => {
     let title = post.quiz_title;
     let thumbnail = post.quiz_thumbnail;
     let id = post.quiz_id;
-    let category = post.quiz_category[0].name;
+    let category = post.quiz_category[0].name.replace(/&amp;/g, '&');
     
     return(
         <Link key={title} to={{
