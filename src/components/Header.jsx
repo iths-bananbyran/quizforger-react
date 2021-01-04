@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import '../style/Header.scss';
+
 const header = ()=>{
     return (
         <header>
-            <nav>
-                <ul>
+            <nav className='qf-main-nav'>
+                <ul className='qf-nav-ul'>
                     <NavLink to='/'>
                         <li>Hem</li>
                     </NavLink>

@@ -1,16 +1,19 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../style/Startpage.scss';
 
 const Startpage = ()=>{
 
     const [homePage, setHomePage] = useState();
+    const [siteDescription, setSiteDescription] = useState();
     const [heroImg, setHeroImg] = useState('');
     const [latestPosts, setLatestPosts] = useState(null);
 
     useEffect(()=>{
         const homePageUrl = 'https://www.peowstudio.com/quizforge/wp-json/wp/v2/pages/10?_embed';
         const latestPostsUrl = 'https://www.peowstudio.com/quizforge/wp-json/quizforge/v1/quizposts/6';
+        const siteDescriptionUrl = 'https://www.peowstudio.com/quizforge/wp-json/';
 
         const fetchHomePage = async ()=>{
             await fetch(homePageUrl)
@@ -26,8 +29,16 @@ const Startpage = ()=>{
                     .catch(e => console.error(e));
         }
 
+        const fetchSiteDescription = async ()=>{
+            await fetch(siteDescriptionUrl)
+                    .then(result => result.json())
+                    .then(result=>setSiteDescription(result))
+                    .catch(e => console.error(e));
+        }
+
         fetchHomePage();
         fetchLatestPosts();
+        fetchSiteDescription();
 
     }, []);
 
@@ -43,13 +54,21 @@ const Startpage = ()=>{
 const renderQuizTitles = (post) => {
 
     let title = post.quiz_title;
+    let thumbnail = post.quiz_thumbnail;
     let id = post.quiz_id;
+    let category = post.quiz_category[0].name;
     
     return(
         <Link key={title} to={{
             pathname: `/quiz/${id}`,
         }}>
-        <h2>{title}</h2>
+            <article className='qf-card'>
+                <figure>
+                    <img src={thumbnail} alt={title}/>
+                </figure>
+                <h3>{title}</h3>
+                <span>{category}</span>
+            </article>
         </Link>
 
     )
@@ -58,13 +77,16 @@ const renderQuizTitles = (post) => {
 
     return(
 
-        <main className="">
-            <div className="hero">
-                <h2>Id: {homePage ? homePage.id : 'inte nåt!'}</h2>
-                <img src={heroImg ? heroImg : null} alt=""/>
+        <main className="qf-main">
+            <div className="qf-hero">
+                <h1>{homePage ? homePage.title.rendered : 'Laddar ...'}</h1>
+                <h2>{siteDescription && siteDescription.description}</h2>
             </div>
-            
-            <div>
+            <div className="qf-divider">
+                <h3>Senast skapade quiz</h3>
+                <hr/>
+            </div>
+            <div className='qf-card-container'>
                 {latestPosts !=null ? latestPosts.map(post => renderQuizTitles(post)) : ''}
             </div>
 

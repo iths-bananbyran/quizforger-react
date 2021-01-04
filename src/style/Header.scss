@@ -1,0 +1,19 @@
+header {
+    display: flex;
+    width: 100vw;
+    max-width: 1000px;
+}
+
+.qf-main-nav {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.qf-nav-ul {
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style-type: none;
+}

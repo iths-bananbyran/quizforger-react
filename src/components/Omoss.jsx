@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import parse from 'html-react-parser';
 
 const Omoss = ()=>{
 
@@ -25,7 +26,7 @@ const Omoss = ()=>{
     console.log(content)
     return(
         <>
-        {content && content[0].content.rendered}
+        {content && parse(content[0].content.rendered)}
         </>
         
     )
