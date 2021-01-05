@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/quizforger-react/static/css/main.c5804200.chunk.css",
-    "main.js": "/quizforger-react/static/js/main.4494a759.chunk.js",
-    "main.js.map": "/quizforger-react/static/js/main.4494a759.chunk.js.map",
+    "main.js": "/quizforger-react/static/js/main.86cca8b7.chunk.js",
+    "main.js.map": "/quizforger-react/static/js/main.86cca8b7.chunk.js.map",
     "runtime-main.js": "/quizforger-react/static/js/runtime-main.463593ce.js",
     "runtime-main.js.map": "/quizforger-react/static/js/runtime-main.463593ce.js.map",
-    "static/js/2.28518e35.chunk.js": "/quizforger-react/static/js/2.28518e35.chunk.js",
-    "static/js/2.28518e35.chunk.js.map": "/quizforger-react/static/js/2.28518e35.chunk.js.map",
+    "static/js/2.3ae4b07a.chunk.js": "/quizforger-react/static/js/2.3ae4b07a.chunk.js",
+    "static/js/2.3ae4b07a.chunk.js.map": "/quizforger-react/static/js/2.3ae4b07a.chunk.js.map",
     "static/js/3.ef670adb.chunk.js": "/quizforger-react/static/js/3.ef670adb.chunk.js",
     "static/js/3.ef670adb.chunk.js.map": "/quizforger-react/static/js/3.ef670adb.chunk.js.map",
     "index.html": "/quizforger-react/index.html",
     "static/css/main.c5804200.chunk.css.map": "/quizforger-react/static/css/main.c5804200.chunk.css.map",
-    "static/js/2.28518e35.chunk.js.LICENSE.txt": "/quizforger-react/static/js/2.28518e35.chunk.js.LICENSE.txt"
+    "static/js/2.3ae4b07a.chunk.js.LICENSE.txt": "/quizforger-react/static/js/2.3ae4b07a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.463593ce.js",
-    "static/js/2.28518e35.chunk.js",
+    "static/js/2.3ae4b07a.chunk.js",
     "static/css/main.c5804200.chunk.css",
-    "static/js/main.4494a759.chunk.js"
+    "static/js/main.86cca8b7.chunk.js"
   ]
 }
