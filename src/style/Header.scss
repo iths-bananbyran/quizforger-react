@@ -11,9 +11,13 @@ header {
 }
 
 .qf-nav-ul {
-    width: 20%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     list-style-type: none;
+
+    li {
+        padding: 1rem;
+    }
 }

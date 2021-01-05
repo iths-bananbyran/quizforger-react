@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../style/Allaquiz.scss';
 
 
 const Allaquiz = ()=>{
@@ -36,31 +37,52 @@ const Allaquiz = ()=>{
            return previous;
        }, []);
       }
+    
+    const renderCatCard = (category, quizList) => {
+        // console.log(quizList)
+        // quizList.sort((a,b) => a.quiz_title - b.quiz_title);
 
+        return(
+                
+                <article key={category} className='qf-category-card'> 
+                    <h3>{category.replace(/&amp;/g, '&')}</h3>
+                    <hr/>
+                    {quizList.map((quiz, i) => {
+                        let title = quiz.quiz_title;
+                        let id = quiz.quiz_id;
+                        let thumbnail = quiz.quiz_thumbnail;
 
-    return(
-        <div>
-            <h2>Alla quiz</h2>
-            {categories && categories.map(cat => {
-                let result = allQuizes.filter(quiz => quiz.quiz_category[0].name === cat);
-                return(
-                    
-                    <>
-                    <h3>{cat.replace(/&amp;/g, '&')}</h3>
-                    {result.map((quiz, i) => {
                         return (
 
-                            <Link key={quiz.quiz_title+i} to={{
-                                pathname: `/quiz/${quiz.quiz_id}`,
+                            <Link key={title+i} to={{
+                                pathname: `/quiz/${id}`,
                             }}>
-                                <h4 key={quiz.quiz_title}>{quiz.quiz_title}</h4>
+                                <div className="qf-list-item-wrapper">
+                                    <figure>
+                                        <img src={thumbnail} alt={title}/>
+                                    </figure>
+                                    <h4 key={title}>{title}</h4>
+                                </div>
                             </Link>
                         )
                     })}
-                    </>
-                )
-            })}
-        </div>
+                </article>
+        )
+    }
+
+
+    return(
+        <main className='qf-main'>
+            <div className='hero'>
+                <h1>Alla quiz</h1>
+            </div>
+            <div className='qf-card-container'>
+                {categories && categories.sort().map(cat => {
+                    let result = allQuizes.filter(quiz => quiz.quiz_category[0].name === cat);
+                    return renderCatCard(cat, result);
+                })}
+            </div>
+        </main>
 
     )
 }

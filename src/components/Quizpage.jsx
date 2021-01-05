@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Quizcard from './Quizcard';
 import Result from './Result';
+import '../style/Quizpage.scss';
 
 const Quizpage = ()=>{
 
@@ -78,17 +79,17 @@ const Quizpage = ()=>{
 
 
     return(
-        <div className="quiz-container">
+        <main className="qf-main">
+            <h1>{quizInfo != null ? quizInfo.title : 'Laddar ...'}</h1>
         {!finished ?
-            <div>
-                <h1>{quizInfo != null ? quizInfo.title : 'Laddar ...'}</h1>
+            <div className='quiz-wrapper'>
                 {currentQuestion != null ? <Quizcard {...currentQuestion} legend={legend} addScore={addScore} lastQuestion={lastQuestion} setNextQuestion={nextQuestion}/>: null}
             </div>
             :
-            <div>
+            <div className='result-wrapper'>
                 <Result scoreBoard={scoreBoard}/>
             </div>}
-        </div>
+        </main>
 
     )
 }

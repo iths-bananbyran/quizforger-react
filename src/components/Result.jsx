@@ -30,8 +30,9 @@ const Result = ({scoreBoard})=>{
     }
     
     return(
-        <div className="quiz-card">
-            <h2>Nu är quizet slut.</h2>
+        <div className="quiz-card quiz-result">
+            <h3>Nu är quizet slut</h3>
+            <hr/>
             <p>Du hade {correct} rätt av {scoreBoard.length} möjliga.</p>
             <p>{resultMessage()}</p>
         </div>
