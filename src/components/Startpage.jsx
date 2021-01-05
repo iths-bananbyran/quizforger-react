@@ -7,7 +7,7 @@ const Startpage = ()=>{
 
     const [homePage, setHomePage] = useState();
     const [siteDescription, setSiteDescription] = useState();
-    const [heroImg, setHeroImg] = useState('');
+    // const [heroImg, setHeroImg] = useState('');
     const [latestPosts, setLatestPosts] = useState(null);
 
     useEffect(()=>{
