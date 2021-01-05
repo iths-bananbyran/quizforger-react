@@ -54,7 +54,7 @@ const Quizcard = (props)=>{
                     <img src={props.question_image} alt={props.question}/>
                 </figure>}
                 <section className="card-content">
-                    <h3>{props.question}</h3>
+                    <h3>{props.question.replace(/\\/g, '')}</h3>
                     <ul className="answers">
                         <li className="answer-list-item">
                             <button
