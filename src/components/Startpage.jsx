@@ -42,13 +42,13 @@ const Startpage = ()=>{
 
     }, []);
 
-    useEffect(()=>{
-        if (homePage != null){
+    // useEffect(()=>{
+    //     if (homePage != null){
 
-            setHeroImg(homePage._embedded["wp:featuredmedia"][0].media_details.sizes["1536x1536"].source_url);
-        }
+    //         setHeroImg(homePage._embedded["wp:featuredmedia"][0].media_details.sizes["1536x1536"].source_url);
+    //     }
         
-    }, [homePage]);
+    // }, [homePage]);
 
 
 const renderQuizTitles = (post) => {
